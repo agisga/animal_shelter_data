@@ -9,7 +9,7 @@ train_data['Transfer'] = (train_data['OutcomeType'].contrast_code)['OutcomeType_
 
 # fit the model
 formula = 'Transfer~AnimalType+Breed+AgeuponOutcome+Color+SexuponOutcome'
-glm_transfer = Statsample::GLM::Regression.new formula, train_data, :logistic
+glm_transfer = Statsample::GLM::Regression.new formula, train_data, :logistic, epsilon: 1e-2
 
 # predict on test data
 test_data = Daru::DataFrame.from_csv 'animal_shelter_train_processed.csv'

@@ -9,7 +9,7 @@ train_data['Return_to_owner'] = (train_data['OutcomeType'].contrast_code(full: t
 
 # fit the model
 formula = 'Return_to_owner~AnimalType+Breed+AgeuponOutcome+Color+SexuponOutcome'
-glm_return_to_owner = Statsample::GLM::Regression.new formula, train_data, :logistic
+glm_return_to_owner = Statsample::GLM::Regression.new formula, train_data, :logistic, epsilon: 1e-2
 
 # predict on test data
 test_data = Daru::DataFrame.from_csv 'animal_shelter_train_processed.csv'

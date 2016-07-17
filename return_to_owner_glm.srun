@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH --qos=normal            # Quality of Service
+#SBATCH --job-name=adoption     # Job Name
+#SBATCH --time=24:00:00         # WallTime
+#SBATCH --nodes=1               # Number of Nodes
+#SBATCH --ntasks-per-node=1     # Number of Tasks per Node
+
+module load ruby 
+ruby return_to_owner_glm.rb 

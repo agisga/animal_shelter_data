@@ -12,7 +12,7 @@ formula = 'Adoption~AnimalType+Breed+AgeuponOutcome+Color+SexuponOutcome'
 glm_adoption = Statsample::GLM::Regression.new formula, train_data, :logistic, epsilon: 1e-2
 
 # predict on test data
-test_data = Daru::DataFrame.from_csv 'animal_shelter_train_processed.csv'
+test_data = Daru::DataFrame.from_csv 'animal_shelter_test_processed.csv'
 adoption_pred = glm_adoption.predict test_data 
 
 # save the result

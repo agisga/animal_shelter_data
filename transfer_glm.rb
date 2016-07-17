@@ -13,7 +13,7 @@ glm_transfer = Statsample::GLM::Regression.new formula, train_data, :logistic
 
 # predict on test data
 test_data = Daru::DataFrame.from_csv 'animal_shelter_train_processed.csv'
-transfer_pred = glm_Transfer.predict test_data 
+transfer_pred = glm_transfer.predict test_data 
 
 # save the result
 File.open('transfer_pred.txt', 'w') { |f| f.puts transfer_pred.to_a }

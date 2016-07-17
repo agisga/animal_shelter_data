@@ -7,15 +7,12 @@ shelter_data.delete_vectors *%W[AnimalID Name DateTime OutcomeSubtype]
 
 # get rid of rows with missing values
 shelter_data = shelter_data.filter_rows do
-  |row| !(row.has_missing_data? or row['SexuponOutcome'] == "Unknown")
+  |row| !row.has_missing_data?
 end
 
 puts "Are there any missing values left?"
 puts shelter_data.has_missing_data?
-shelter_data.vectors.to_a.each do |i| 
-  puts shelter_data[i].include? ""
-  puts shelter_data[i].include? "Unknown"
-end
+shelter_data.vectors.to_a.each { |i| puts shelter_data[i].include? "" }
 
 # transform AgeuponOutcome to a numeric variable
 shelter_data['AgeuponOutcome'].map! do |age|
@@ -54,12 +51,3 @@ shelter_data['Color'].frequencies
 
 # save result
 shelter_data.write_csv "animal_shelter_train_processed.csv"
-
-## define the 0-1-valued response variable
-#shelter_data['OutcomeType_Adoption'] = (shelter_data['OutcomeType'].
-#                                        contrast_code)['OutcomeType_Adoption']
-#
-#require 'statsample-glm'
-#formula = 'OutcomeType_Adoption~AnimalType+Breed+AgeuponOutcome+Color+SexuponOutcome'
-#glm_adoption = Statsample::GLM::Regression.new formula, small, :logistic
-#puts glm_adoption.model.coefficients :hash
